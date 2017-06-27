@@ -1,0 +1,9 @@
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.deps.json
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.runtimeconfig.json
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.runtimeconfig.dev.json
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.dll
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.csprojResolveAssemblyReference.cache
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.AssemblyInfo.cs
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.pdb
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.dll
+c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.pdb

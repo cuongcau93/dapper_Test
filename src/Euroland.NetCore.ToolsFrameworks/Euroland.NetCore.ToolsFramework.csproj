@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Version>2.0.0</Version>
+    <Description />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Setting\AbstractSetting.cs" />
+    <Compile Remove="Setting\CustomerSetting.cs" />
+    <Compile Remove="Setting\CustomerToolSetting.cs" />
+    <Compile Remove="Setting\RootSetting.cs" />
+    <Compile Remove="Setting\SettingFactory.cs" />
+    <Compile Remove="Setting\ToolSetting.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="_lang\ExceptionMessage.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExceptionMessage.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="_lang\ExceptionMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

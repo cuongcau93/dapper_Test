@@ -20,14 +20,14 @@ namespace DapperDemo.Controllers
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            return productRepository.GetDataProduct();
+            return productRepository.GetAll();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public Product Get(int id)
         {
-            return productRepository.GetByID(id);
+            return productRepository.GetDataProductById(id);
         }
 
         // POST api/values
@@ -42,7 +42,7 @@ namespace DapperDemo.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Product prod)
         {
-            prod.ProductId = id;
+            prod.Id = id;
             if (ModelState.IsValid)
                 productRepository.Update(prod);
         }

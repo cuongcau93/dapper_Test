@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <ExternalService>
+    <_37>
+      <en-GB>
+        <ServiceName>Financial Calendar</ServiceName>
+        <ServiceLink>http://gamma.euroland.com/tools/fincalendar2/?companycode=s-volv</ServiceLink>
+      </en-GB>
+      <fi-FI>
+        <ServiceName>Talouskalenteri</ServiceName>
+        <ServiceLink>http://gamma.euroland.com/tools/fincalendar2/?companycode=s-volv&amp;lang=fi-FI</ServiceLink>
+      </fi-FI>
+    </_37>
+  </ExternalService>
+</settings>

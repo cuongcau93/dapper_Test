@@ -7,3 +7,12 @@ c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\obj\Deb
 c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.pdb
 c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.dll
 c:\users\123\documents\visual studio 2017\Projects\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.pdb
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.deps.json
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.runtimeconfig.json
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.runtimeconfig.dev.json
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.dll
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\bin\Debug\netcoreapp1.1\DapperDemo.pdb
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.csprojResolveAssemblyReference.cache
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.AssemblyInfo.cs
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.dll
+C:\Users\123\Documents\GitHub\dapper_Test\DapperDemo\DapperDemo\obj\Debug\netcoreapp1.1\DapperDemo.pdb

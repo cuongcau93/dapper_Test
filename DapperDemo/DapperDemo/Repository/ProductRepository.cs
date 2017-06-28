@@ -27,28 +27,20 @@ namespace DapperDemo.Repository
             }
         }
 
-        public IEnumerable<Product> GetDataProduct(int id)
+        public Product GetDataProductById(int id)
         {
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    using (var authorData = dbConnection.QueryMultiple("TEST", new { Id = id}, commandType: CommandType.StoredProcedure))
-                    {
-                        var author = authorData.Read<Product>();
-                        //var address = multipleData.Read<Address>().ToList();
-                        if (author != null)
-                        {
-                            return author.AsEnumerable();
-                        }
-                    }
+                    var productData = dbConnection.QueryFirst<ProductExt>("spDdGetStudentById", new { Quantity = 15, Id = id}, commandType: CommandType.StoredProcedure);
+                    return productData;
                 }
             }
             catch (Exception ex)
             {
                 return null;
             }
-            return null;
         }
 
         public void Add(Product prod)

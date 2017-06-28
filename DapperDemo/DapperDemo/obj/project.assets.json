@@ -10010,10 +10010,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\123\\documents\\visual studio 2017\\Projects\\DapperDemo\\DapperDemo\\DapperDemo.csproj",
+      "projectUniqueName": "C:\\Users\\123\\Documents\\GitHub\\dapper_Test\\DapperDemo\\DapperDemo\\DapperDemo.csproj",
       "projectName": "DapperDemo",
-      "projectPath": "c:\\users\\123\\documents\\visual studio 2017\\Projects\\DapperDemo\\DapperDemo\\DapperDemo.csproj",
-      "outputPath": "c:\\users\\123\\documents\\visual studio 2017\\Projects\\DapperDemo\\DapperDemo\\obj\\",
+      "projectPath": "C:\\Users\\123\\Documents\\GitHub\\dapper_Test\\DapperDemo\\DapperDemo\\DapperDemo.csproj",
+      "outputPath": "C:\\Users\\123\\Documents\\GitHub\\dapper_Test\\DapperDemo\\DapperDemo\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"

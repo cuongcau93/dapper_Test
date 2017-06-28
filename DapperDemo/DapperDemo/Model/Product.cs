@@ -9,9 +9,14 @@ namespace DapperDemo.Model
     public class Product
     {
         [Key]
-        public int ProductId { get; set; }
-        public string Name { get; set; }
-        public int Quantity { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }        
         public double Price { get; set; }
+        public int Quantity { get; set; }
+    }
+
+    public class ProductExt : Product
+    {
+        public string Description { get; set; }        
     }
 }

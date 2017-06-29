@@ -35,22 +35,33 @@ namespace Euroland.NetCore.ToolsFramework.Data
         public IEnumerable<T> Exec<T>(string storedProcedure, dynamic parameterObject = null)
         {
             var paraObj = (object)parameterObject;
-            return Connection.Query<T>(storedProcedure, param: paraObj, commandType: CommandType.StoredProcedure);
+            using (var connection = Connection)
+            {
+                connection.Open();
+                return connection.Query<T>(storedProcedure, param: paraObj, commandType: CommandType.StoredProcedure);
+            }
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<T>> ExecAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
+        public async Task<IEnumerable<T>> ExecAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paraObj = GeneratePrameters(parameters);
+            return await ExecAsync<T>(storedProcedure, paraObj);
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<T>> ExecAsync<T>(string storedProcedure, dynamic parameterObject = null)
+        public async Task<IEnumerable<T>> ExecAsync<T>(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var paraObj = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                return await connection.QueryAsync<T>(storedProcedure, param: paraObj, commandType: CommandType.StoredProcedure);
+            }
         }
 
         /// <inheritdoc/>
+        /// CUONGNM
         public int ExecNonQuery(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
             dynamic paraObjQuery = GeneratePrameters(parameters);
@@ -58,22 +69,35 @@ namespace Euroland.NetCore.ToolsFramework.Data
         }
 
         /// <inheritdoc/>
+        /// CUONGNM
         public int ExecNonQuery(string storedProcedure, dynamic parameterObject = null)
         {
             var objPara = (object)parameterObject;
-            return Connection.Execute(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure);
+            using (var connection = Connection)
+            {
+                connection.Open();
+                return connection.Execute(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure);
+            }
         }
 
         /// <inheritdoc/>
-        public Task<int> ExecNonQueryAsync(string storedProcedure, IEnumerable<IDataParameter> parameters)
+        /// CUONGNM
+        public async Task<int> ExecNonQueryAsync(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paraObjQuery = GeneratePrameters(parameters);
+            return await ExecNonQueryAsync(storedProcedure, paraObjQuery);
         }
 
         /// <inheritdoc/>
-        public Task<int> ExecNonQueryAsync(string storedProcedure, dynamic parameterObject = null)
+        /// CUONGNM
+        public async Task<int> ExecNonQueryAsync(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var objPara = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                return await connection.ExecuteAsync(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure);
+            }
         }
 
         /// <inheritdoc/>
@@ -87,123 +111,229 @@ namespace Euroland.NetCore.ToolsFramework.Data
         public T ExecSingle<T>(string storedProcedure, dynamic parameterObject = null)
         {
             var obj = (object)parameterObject;
-            if (TypeUtils.IsPrimitive(typeof(T)))
+            using (var connection = Connection)
             {
-                return Connection.ExecuteScalar<T>(storedProcedure, param: obj, commandType: CommandType.StoredProcedure);
+                connection.Open();
+                if (TypeUtils.IsPrimitive(typeof(T)))
+                {
+                    return connection.ExecuteScalar<T>(storedProcedure, param: obj, commandType: CommandType.StoredProcedure);
+                }
+                else
+                {
+                    return connection.QueryFirst<T>(storedProcedure, param: obj, commandType: CommandType.StoredProcedure);
+                }
             }
-            else
+        }                                                                                                                                                                                                                    
+
+        /// <inheritdoc/>
+        /// CUONGNM
+        public async Task<T> ExecSingleAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
+        {
+            dynamic paramObj = GeneratePrameters(parameters);
+            return await ExecSingleAsync<T>(storedProcedure, paramObj);
+        }
+
+        /// <inheritdoc/>
+        /// CUONGNM
+        public async Task<T> ExecSingleAsync<T>(string storedProcedure, dynamic parameterObject = null)
+        {
+            var objPara = (object)parameterObject;
+            using (var connection = Connection)
             {
-                return Connection.QueryFirst<T>(storedProcedure, param: obj, commandType: CommandType.StoredProcedure);
+                connection.Open();
+                return await connection.QuerySingleAsync<T>(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure);
             }
         }
 
         /// <inheritdoc/>
-        public Task<T> ExecSingleAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
+        /// CUONGNM
+        public async Task<T> ExecSingleWithTranactionAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paramObj = GeneratePrameters(parameters);
+            return await ExecSingleWithTranactionAsync<T>(storedProcedure, paramObj);
         }
 
         /// <inheritdoc/>
-        public Task<T> ExecSingleAsync<T>(string storedProcedure, dynamic parameterObject = null)
+        /// CUONGNM
+        public async Task<T> ExecSingleWithTranactionAsync<T>(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var objPara = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    var execSingleWithTranactionAsync = await connection.QuerySingleAsync<T>(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                    return  execSingleWithTranactionAsync;
+                }
+            }
         }
 
         /// <inheritdoc/>
-        public Task<T> ExecSingleWithTranactionAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc/>
-        public Task<T> ExecSingleWithTranactionAsync<T>(string storedProcedure, dynamic parameterObject = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc/>
+        /// CUONGNM
         public T ExecSingleWithTransaction<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paramObj = GeneratePrameters(parameters);
+            return ExecSingleWithTransaction<T>(storedProcedure, paramObj);
         }
 
         /// <inheritdoc/>
+        /// CUONGNM
         public T ExecSingleWithTransaction<T>(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var obj = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    if (TypeUtils.IsPrimitive(typeof(T)))
+                    {
+                        var execSingleWithTransaction = connection.ExecuteScalar<T>(storedProcedure, param: obj, commandType: CommandType.StoredProcedure, transaction: transaction);
+                        transaction.Commit();
+                        return execSingleWithTransaction;
+                    }
+                    else
+                    {
+                        var execSingleWithTransaction = connection.QueryFirst<T>(storedProcedure, param: obj, commandType: CommandType.StoredProcedure, transaction: transaction);
+                        transaction.Commit();
+                        return execSingleWithTransaction;
+                    }
+                }
+            }
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerator<T>> ExecWithTranactionAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
+        /// CUONGNM
+        public async Task<IEnumerator<T>> ExecWithTranactionAsync<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paraObj = GeneratePrameters(parameters);
+            return await ExecWithTranactionAsync<T>(storedProcedure, paraObj);
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerator<T>> ExecWithTranactionAsync<T>(string storedProcedure, dynamic parameterObject = null)
+        /// CUONGNM
+        public async Task<IEnumerator<T>> ExecWithTranactionAsync<T>(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var paraObj = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                        var execWithTranactionAsync = await connection.QueryAsync<T>(storedProcedure, param: paraObj, commandType: CommandType.StoredProcedure);
+                        transaction.Commit();
+                        return execWithTranactionAsync.GetEnumerator();
+                }
+            }
         }
 
         /// <inheritdoc/>
         public void ExecWithTransaction(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paramObj = GeneratePrameters(parameters);
+            ExecWithTransaction(storedProcedure, paramObj);
         }
 
         /// <inheritdoc/>
         public void ExecWithTransaction(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var objPara = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    connection.Query(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                }
+            }
         }
 
         /// <inheritdoc/>
         public IEnumerator<T> ExecWithTransaction<T>(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paramObj = GeneratePrameters(parameters);
+            return ExecWithTransaction(storedProcedure, paramObj);
         }
 
         /// <inheritdoc/>
         public IEnumerator<T> ExecWithTransaction<T>(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var objPara = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    var ExecWithTransaction = connection.Query<T>(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                    return ExecWithTransaction.GetEnumerator();
+                }
+            }
         }
 
         /// <inheritdoc/>
         public Task ExecWithTransactionAsync(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paramObj = GeneratePrameters(parameters);
+            return ExecWithTransactionAsync(storedProcedure, paramObj);
         }
 
         /// <inheritdoc/>
         public Task ExecWithTransactionAsync(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var objPara = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    var ExecWithTransactionAsync = connection.QueryAsync(storedProcedure, param: objPara, commandType: CommandType.StoredProcedure, transaction: transaction);
+                    transaction.Commit();
+                    return  ExecWithTransactionAsync;
+                }
+            }
         }
 
         /// <inheritdoc/>
         public IMultipleResultSet QueryMultipleResult(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paramObj = GeneratePrameters(parameters);
+            return QueryMultipleResult(storedProcedure, paramObj);
         }
 
         /// <inheritdoc/>
         public IMultipleResultSet QueryMultipleResult(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
+            var paraObj = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                var multipleResult = connection.QueryMultiple(storedProcedure, param: paraObj, commandType: CommandType.StoredProcedure);
+                return new DapperMultipleResultSet(this, multipleResult);
+            }
         }
 
         /// <inheritdoc/>
-        public Task<IMultipleResultSet> QueryMultipleResultAsync(string storedProcedure, IEnumerable<IDataParameter> parameters)
+        public async Task<IMultipleResultSet> QueryMultipleResultAsync(string storedProcedure, IEnumerable<IDataParameter> parameters)
         {
-            throw new NotImplementedException();
+            dynamic paramObj = GeneratePrameters(parameters);
+            return await QueryMultipleResultAsync(storedProcedure, paramObj);
         }
 
         /// <inheritdoc/>
-        public Task<IMultipleResultSet> QueryMultipleResultAsync(string storedProcedure, dynamic parameterObject = null)
+        public async Task<IMultipleResultSet> QueryMultipleResultAsync(string storedProcedure, dynamic parameterObject = null)
         {
-            throw new NotImplementedException();
-        }
+            var paraObj = (object)parameterObject;
+            using (var connection = Connection)
+            {
+                connection.Open();
+                var multipleResult = await connection.QueryMultipleAsync(storedProcedure, param: paraObj, commandType: CommandType.StoredProcedure);
+                return new DapperMultipleResultSet(this, multipleResult);
+            }
+        }        
 
         /// <summary>
         /// Processing parameters prepare execute command

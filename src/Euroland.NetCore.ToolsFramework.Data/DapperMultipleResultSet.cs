@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,13 +45,13 @@ namespace Euroland.NetCore.ToolsFramework.Data
         /// <inheritdoc />
         public TResult GetSingle<TResult>()
         {
-            throw new NotImplementedException();
+            return _gridReader.ReadSingle<TResult>();
         }
 
         /// <inheritdoc />
-        public Task<TResult> GetSingleAsync<TResult>()
+        public async Task<TResult> GetSingleAsync<TResult>()
         {
-            throw new NotImplementedException();
+            return await _gridReader.ReadSingleAsync<TResult>();
         }
     }
 }

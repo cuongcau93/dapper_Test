@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euroland.NetCore.ToolsFramework", "Euroland.NetCore.ToolsFrameworks\Euroland.NetCore.ToolsFramework.csproj", "{C8071B27-7391-4C44-83C0-200E4F1BADDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euroland.NetCore.ToolsFramework.Test", "Euroland.NetCore.ToolsFramework_Test\Euroland.NetCore.ToolsFramework.Test.csproj", "{0F2B90D9-9E52-4625-B76F-9E3F91C0ECB0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euroland.NetCore.ToolsFramework.Data", "Euroland.NetCore.ToolsFramework.Data\Euroland.NetCore.ToolsFramework.Data.csproj", "{8BCBAED3-1F5C-4152-9990-040937A1B774}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euroland.NetCore.ToolsFramework.Translation", "Euroland.NetCore.ToolsFramework.Translation\Euroland.NetCore.ToolsFramework.Translation.csproj", "{2F4D4884-A67F-450C-A102-68C768B0305A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euroland.NetCore.ToolsFramework.Data.Test", "Euroland.NetCore.ToolsFramework.Data.Test\Euroland.NetCore.ToolsFramework.Data.Test.csproj", "{C90D109A-D8A5-4E1C-B86C-F9141B1D5133}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8071B27-7391-4C44-83C0-200E4F1BADDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8071B27-7391-4C44-83C0-200E4F1BADDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8071B27-7391-4C44-83C0-200E4F1BADDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8071B27-7391-4C44-83C0-200E4F1BADDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2B90D9-9E52-4625-B76F-9E3F91C0ECB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2B90D9-9E52-4625-B76F-9E3F91C0ECB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2B90D9-9E52-4625-B76F-9E3F91C0ECB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2B90D9-9E52-4625-B76F-9E3F91C0ECB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BCBAED3-1F5C-4152-9990-040937A1B774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BCBAED3-1F5C-4152-9990-040937A1B774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BCBAED3-1F5C-4152-9990-040937A1B774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BCBAED3-1F5C-4152-9990-040937A1B774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F4D4884-A67F-450C-A102-68C768B0305A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F4D4884-A67F-450C-A102-68C768B0305A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F4D4884-A67F-450C-A102-68C768B0305A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F4D4884-A67F-450C-A102-68C768B0305A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C90D109A-D8A5-4E1C-B86C-F9141B1D5133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C90D109A-D8A5-4E1C-B86C-F9141B1D5133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C90D109A-D8A5-4E1C-B86C-F9141B1D5133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C90D109A-D8A5-4E1C-B86C-F9141B1D5133}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
